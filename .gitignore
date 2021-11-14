@@ -17,4 +17,7 @@ yarn-debug.log*
 yarn-error.log*
 
 .eslintcache
+
+# Server artifacts
 .lighttpd.conf
+*.log
