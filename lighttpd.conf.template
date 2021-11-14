@@ -24,7 +24,7 @@ server.modules              = (
 #                               "mod_rrdtool",
                               )
 
-server.document-root        = "{{SITE_BASE}}"
+server.document-root        = "{{SITE_BASE}}/build"
 server.errorlog             = "{{SITE_BASE}}/log/error.log"
 index-file.names            = ( "index.php", "index.html",
                                 "index.htm", "default.htm" )
@@ -74,8 +74,8 @@ server.port                = {{PORT}}
 #dir-listing.encoding        = "utf-8"
 
 ## enable debugging
-debug.log-request-header   = "enable"
-debug.log-response-header  = "enable"
+#debug.log-request-header   = "enable"
+#debug.log-response-header  = "enable"
 debug.log-request-handling = "enable"
 debug.log-file-not-found   = "enable"
 
@@ -104,27 +104,3 @@ debug.log-file-not-found   = "enable"
 
 #### expire module
 #expire.url                 = ( "/buggy/" => "access 2 hours", "/asdhas/" => "access plus 1 seconds 2 minutes")
-
-#### variable usage:
-## variable name without "." is auto prefixed by "var." and becomes "var.bar"
-#bar = 1
-#var.mystring = "foo"
-
-## integer add
-#bar += 1
-## string concat, with integer cast as string, result: "www.foo1.com"
-#server.name = "www." + mystring + var.bar + ".com"
-## array merge
-#index-file.names = (foo + ".php") + index-file.names
-#index-file.names += (foo + ".php")
-
-#### include
-#include /etc/lighttpd/lighttpd-inc.conf
-## same as above if you run: "lighttpd -f /etc/lighttpd/lighttpd.conf"
-#include "lighttpd-inc.conf"
-
-#### include_shell
-#include_shell "echo var.a=1"
-## the above is same as:
-#var.a=1
-
