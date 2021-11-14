@@ -26,8 +26,8 @@ server.modules              = (
 
 include_shell "echo var.site_base=$(pwd)"
 
-server.document-root        = var.site_base
-server.errorlog             = var.site_base + "/lighttpd/error.log"
+server.document-root        = "{{SITE_BASE}}"
+server.errorlog             = "{SITE_BASE}}/lighttpd/error.log"
 index-file.names            = ( "index.php", "index.html",
                                 "index.htm", "default.htm" )
 
@@ -61,7 +61,7 @@ url.access-deny             = ( "~", ".inc", ".log" )
 server.range-requests = "disable"
 
 static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
-server.port                = 31415
+server.port                = {{PORT}}
 #server.bind                = "127.0.0.1"
 #server.error-handler-404   = "/error-handler.html"
 #server.error-handler-404   = "/error-handler.php"
