@@ -25,7 +25,7 @@ server.modules              = (
                               )
 
 server.document-root        = "{{SITE_BASE}}/build"
-server.errorlog             = "{{SITE_BASE}}/log/error.log"
+server.errorlog             = "{{SITE_BASE}}/lighttpd/log/error.log"
 index-file.names            = ( "index.php", "index.html",
                                 "index.htm", "default.htm" )
 
@@ -47,7 +47,7 @@ mimetype.assign             = (
   ""              =>      "application/octet-stream",
  )
 
-accesslog.filename          = "{{SITE_BASE}}/log/access.log"
+accesslog.filename          = "{{SITE_BASE}}/lighttpd/log/access.log"
 
 ## deny access the file-extensions
 #

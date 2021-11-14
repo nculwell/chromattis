@@ -8,18 +8,18 @@ fi
 (cd build && ln -fs . chromattis)
 
 DEFAULT_PORT=60999
-EXE_DIR=$(cd "$(dirname "$0")" && pwd)
-SITE_BASE="$EXE_DIR"
+LIGHTTPD_DIR=$(cd "$(dirname "$0")" && pwd)
+SITE_BASE="$(cd "$LIGHTTPD_DIR/.." && pwd)"
 
-CONFIG="$SITE_BASE/.lighttpd.conf"
-TEMPLATE="$EXE_DIR/lighttpd.conf.template"
+CONFIG="$LIGHTTPD_DIR/.lighttpd.conf"
+TEMPLATE="$LIGHTTPD_DIR/lighttpd.conf.template"
 
 PORT=$1
-[ -z "$PORT" ] && PORT=$(cat "$SITE_BASE/.lighttpd.port" 2>/dev/null)
-[ -z "$PORT" ] && PORT=$(cat "$SITE_BASE/.port" 2>/dev/null)
+[ -z "$PORT" ] && PORT=$(cat "$LIGHTTPD_DIR/.lighttpd.port" 2>/dev/null)
+[ -z "$PORT" ] && PORT=$(cat "$LIGHTTPD_DIR/.port" 2>/dev/null)
 [ -z "$PORT" ] && PORT=$DEFAULT_PORT
 
-echo "Serving on port $PORT in $SITE_BASE"
+echo "Serving on port $PORT in $SITE_BASE/build"
 #[ "$PORT" = "$DEFAULT_PORT" ] && echo "WARNING: Using the default port, please configure a different one!"
 sed "s|{{SITE_BASE}}|$SITE_BASE|;s|{{PORT}}|$PORT|" "$TEMPLATE" > "$CONFIG"
 /usr/sbin/lighttpd -D -f "$CONFIG"
