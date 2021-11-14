@@ -1,9 +1,10 @@
 # lighttpd configuration file
 server.modules              = (
+                                "mod_access",
+                                "mod_accesslog"
 #                               "mod_rewrite",
 #                               "mod_redirect",
 #                               "mod_alias",
-#                               "mod_access",
 #                               "mod_cml",
 #                               "mod_trigger_b4_dl",
 #                               "mod_auth",
@@ -21,13 +22,10 @@ server.modules              = (
 #                               "mod_expire",
 #                               "mod_secdownload",
 #                               "mod_rrdtool",
-#                               "mod_accesslog"
                               )
 
-include_shell "echo var.site_base=$(pwd)"
-
 server.document-root        = "{{SITE_BASE}}"
-server.errorlog             = "{SITE_BASE}}/lighttpd/error.log"
+server.errorlog             = "{{SITE_BASE}}/log/error.log"
 index-file.names            = ( "index.php", "index.html",
                                 "index.htm", "default.htm" )
 
@@ -49,7 +47,7 @@ mimetype.assign             = (
   ""              =>      "application/octet-stream",
  )
 
-#accesslog.filename          = "{{SITE_BASE}}/lighttpd/access.log"
+accesslog.filename          = "{{SITE_BASE}}/log/access.log"
 
 ## deny access the file-extensions
 #
@@ -76,10 +74,10 @@ server.port                = {{PORT}}
 #dir-listing.encoding        = "utf-8"
 
 ## enable debugging
-#debug.log-request-header   = "enable"
-#debug.log-response-header  = "enable"
-#debug.log-request-handling = "enable"
-#debug.log-file-not-found   = "enable"
+debug.log-request-header   = "enable"
+debug.log-response-header  = "enable"
+debug.log-request-handling = "enable"
+debug.log-file-not-found   = "enable"
 
 #### compress module
 #compress.cache-dir         = "/var/cache/lighttpd/compress/"
