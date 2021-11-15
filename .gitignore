@@ -18,6 +18,10 @@ yarn-error.log*
 
 .eslintcache
 
+# Editor files
+.*.swp
+*~
+
 # Server artifacts
 .lighttpd.conf
 *.log
