@@ -5,7 +5,7 @@ if [ ! -d "build" ]; then
   exit 255
 fi
 
-(cd build && ln -fs . chromattis)
+[ ! -e build/chromattis ] && (cd build && ln -fs . chromattis)
 
 DEFAULT_PORT=60999
 LIGHTTPD_DIR=$(cd "$(dirname "$0")" && pwd)

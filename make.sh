@@ -4,11 +4,8 @@ INSTALL_TRIGGER_FILE=node_modules/react/index.js
 BUILT_MARKER_FILE=build/.built
 BUILD_TRIGGER_FILE=build/index.html
 
-latest() {
-  xargs -n1 stat "$@" | sort -n | tail -n1
-}
-
 if [ ! -f "$INSTALL_TRIGGER_FILE" ]; then
+  echo INSTALLING
   npm install || exit 255
   npm audit fix || exit 255
 fi
@@ -38,4 +35,9 @@ if [ "$RUN_BUILD" = 1 ]; then
 fi
 
 #SOURCES=$(find src -name '*.js' -o -name '*.css' -o -name '*.jsx' -o -name '*.ttf')
+
+if [ "$1" = "serve" ]; then
+  echo STARTING TEST SERVER
+  lighttpd/lighttpd-serve
+fi
 
